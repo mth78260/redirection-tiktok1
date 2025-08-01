@@ -45,27 +45,28 @@
   <div id="button-container"></div>
 
   <script>
-    // Teste une permission qui ne marche PAS dans TikTok
-    function isBrowser() {
-      return navigator.permissions
-        .query({ name: 'geolocation' })
-        .then(() => true)
-        .catch(() => false);
+    function isInAppBrowser() {
+      const ua = navigator.userAgent.toLowerCase();
+      const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
+      const isInstagram = ua.includes("instagram");
+      const isFacebook = ua.includes("fbav") || ua.includes("fban");
+      const isIframe = window.self !== window.top;
+
+      return isTikTok || isInstagram || isFacebook || isIframe;
     }
 
-    isBrowser().then((ok) => {
-      if (ok) {
-        const container = document.getElementById("button-container");
-        const btn = document.createElement("button");
-        btn.innerText = "Continuer vers Telegram";
-        btn.className = "go";
-        btn.onclick = () => window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
-        container.appendChild(btn);
-      }
-    });
+    if (!isInAppBrowser()) {
+      const container = document.getElementById("button-container");
+      const btn = document.createElement("button");
+      btn.innerText = "Continuer vers Telegram";
+      btn.className = "go";
+      btn.onclick = () => window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+      container.appendChild(btn);
+    }
   </script>
 </body>
 </html>
+
 
 
 
