@@ -42,9 +42,27 @@
   <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
   <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
 
-  <button class="go" onclick="window.location.href='https://t.me/+yOEXTSd298c3NTM0'">
-    Continuer vers Telegram
-  </button>
+  <div id="button-container"></div>
+
+  <script>
+    function isInTikTokApp() {
+      const ua = navigator.userAgent.toLowerCase();
+      const isTikTokUA = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
+      const isIframe = window.self !== window.top;
+      const isRestricted = !window.openDatabase || !navigator.share;
+
+      return isTikTokUA || isIframe || isRestricted;
+    }
+
+    if (!isInTikTokApp()) {
+      const container = document.getElementById("button-container");
+      const btn = document.createElement("button");
+      btn.innerText = "Continuer vers Telegram";
+      btn.className = "go";
+      btn.onclick = () => window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+      container.appendChild(btn);
+    }
+  </script>
 </body>
 </html>
 
