@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirection</title>
+  <title>Accès à la planque</title>
   <script>
-    // Détection TikTok
+    // Nouvelle détection strictement centrée sur TikTok
     const ua = navigator.userAgent.toLowerCase();
-    const isIframe = window.self !== window.top;
-    const blockApis = !window.openDatabase && !navigator.share;
-    const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
+    const isTikTok =
+      ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
 
     if (!isTikTok) {
-      // Redirige directement si ce n’est pas TikTok
       window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
     }
   </script>
@@ -75,6 +73,7 @@
   </div>
 </body>
 </html>
+
 
 
 
