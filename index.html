@@ -45,25 +45,27 @@
   <div id="button-container"></div>
 
   <script>
-    function isInTikTokApp() {
-      const ua = navigator.userAgent.toLowerCase();
-      const isTikTokUA = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
-      const isIframe = window.self !== window.top;
-      const isRestricted = !window.openDatabase || !navigator.share;
-
-      return isTikTokUA || isIframe || isRestricted;
+    // Teste une permission qui ne marche PAS dans TikTok
+    function isBrowser() {
+      return navigator.permissions
+        .query({ name: 'geolocation' })
+        .then(() => true)
+        .catch(() => false);
     }
 
-    if (!isInTikTokApp()) {
-      const container = document.getElementById("button-container");
-      const btn = document.createElement("button");
-      btn.innerText = "Continuer vers Telegram";
-      btn.className = "go";
-      btn.onclick = () => window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
-      container.appendChild(btn);
-    }
+    isBrowser().then((ok) => {
+      if (ok) {
+        const container = document.getElementById("button-container");
+        const btn = document.createElement("button");
+        btn.innerText = "Continuer vers Telegram";
+        btn.className = "go";
+        btn.onclick = () => window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+        container.appendChild(btn);
+      }
+    });
   </script>
 </body>
 </html>
+
 
 
