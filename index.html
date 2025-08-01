@@ -32,18 +32,14 @@
   <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
 
   <script>
-    // Fonction qui essaie de détecter TikTok via comportement ou User-Agent
-    function isInTikTokApp() {
-      const ua = navigator.userAgent.toLowerCase();
-      const isTikTokUA = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
-      const isIframe = window.self !== window.top;
-      const isLimitedEnv = !navigator.share && !window.openDatabase;
+    const ua = navigator.userAgent.toLowerCase();
+    const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
 
-      return isTikTokUA || isIframe || isLimitedEnv;
-    }
-
-    if (!isInTikTokApp()) {
-      window.location.replace("https://t.me/+yOEXTSd298c3NTM0");
+    if (!isTikTok) {
+      // Attendre 500ms pour laisser le temps d'afficher la page
+      setTimeout(() => {
+        window.location.href = "./redirige.html";
+      }, 500);
     }
   </script>
 </body>
