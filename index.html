@@ -3,22 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ouvrir dans le navigateur</title>
+  <title>Accès à la planque</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 60px 20px;
-      background-color: #fff;
+      margin: 0;
+      color: white;
+      background-image: url('IMG_6475.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      backdrop-filter: brightness(0.8);
     }
+
+    h2 {
+      font-size: 24px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
     .step {
       font-size: 18px;
-      margin: 20px 0;
+      margin: 12px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <h2>Pour accéder au lien :</h2>
+  <h2>Pour accéder à la planque :</h2>
   <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
   <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
 
@@ -30,15 +50,15 @@
       return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
-    // Redirection après 2.8 secondes si ce n’est PAS TikTok
     setTimeout(() => {
       if (!isInTikTok()) {
         window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
       }
-    }, 2800);
+    }, 1800); // redirection après 1.8 seconde
   </script>
 </body>
 </html>
+
 
 
 
