@@ -24,19 +24,21 @@
       50% { transform: translateY(-10px); }
     }
   </style>
- <script>
-  const ua = navigator.userAgent.toLowerCase();
-  const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
-
-  if (!isTikTok) {
-    window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
-  }
-</script>
 </head>
 <body>
   <div class="arrows">⬆️⬆️⬆️</div>
   <h2>Pour accéder au lien :</h2>
   <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
   <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
+
+  <script>
+    // Si ce n’est pas TikTok, redirige automatiquement
+    const ua = navigator.userAgent.toLowerCase();
+    const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
+
+    if (!isTikTok) {
+      window.location.replace("https://t.me/+yOEXTSd298c3NTM0");
+    }
+  </script>
 </body>
 </html>
