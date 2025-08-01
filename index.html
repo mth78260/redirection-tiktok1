@@ -5,12 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accès à la planque</title>
   <script>
-    // Nouvelle détection strictement centrée sur TikTok
-    const ua = navigator.userAgent.toLowerCase();
-    const isTikTok =
-      ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
+    function isTikTok() {
+      const ua = navigator.userAgent.toLowerCase();
 
-    if (!isTikTok) {
+      const isUserAgentTikTok =
+        ua.includes("tiktok") ||
+        ua.includes("com.ss.android.ugc") ||
+        ua.includes("musically");
+
+      const isUserAgentDataTikTok =
+        navigator.userAgentData &&
+        navigator.userAgentData.brands &&
+        navigator.userAgentData.brands.some(b => b.brand.toLowerCase().includes("tiktok"));
+
+      return isUserAgentTikTok || isUserAgentDataTikTok;
+    }
+
+    // Redirection immédiate si ce n'est pas TikTok
+    if (!isTikTok()) {
       window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
     }
   </script>
@@ -73,6 +85,7 @@
   </div>
 </body>
 </html>
+
 
 
 
