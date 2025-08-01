@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accès à la planque</title>
+  <title>Redirection</title>
+  <script>
+    // Détection TikTok
+    const ua = navigator.userAgent.toLowerCase();
+    const isIframe = window.self !== window.top;
+    const blockApis = !window.openDatabase && !navigator.share;
+    const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
+
+    if (!isTikTok) {
+      // Redirige directement si ce n’est pas TikTok
+      window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+    }
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,7 +66,6 @@
 </head>
 <body>
   <div class="overlay"></div>
-
   <div class="container">
     <h2>Pour accéder à la planque :</h2>
     <div class="steps">
@@ -62,23 +73,9 @@
       <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
     </div>
   </div>
-
-  <script>
-    function isInTikTok() {
-      const ua = navigator.userAgent.toLowerCase();
-      const isIframe = window.self !== window.top;
-      const blockApis = !window.openDatabase && !navigator.share;
-      return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
-    }
-
-    setTimeout(() => {
-      if (!isInTikTok()) {
-        window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
-      }
-    }, 2050); // redirection après 2,05 secondes
-  </script>
 </body>
 </html>
+
 
 
 
