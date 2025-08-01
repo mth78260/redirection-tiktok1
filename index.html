@@ -7,18 +7,31 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 0;
       margin: 0;
-      color: white;
+      padding: 0;
       background-image: url('https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/tbHHPTSzvAaaejqakb2gpgxMtSd2/890b231a-8897-4a5e-9e23-c3f44a8e1306?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=2f488bd324502ec20fee5b40e9c9ed39%2F20250801%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250801T134640Z&X-Amz-Expires=43200&X-Amz-Signature=dbb426e1b4c1416f0daefca5dcc0882d37feebd19b7905275742a9f033182b27&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22IMG_6475.jpeg%22');
       background-size: cover;
       background-position: center;
       height: 100vh;
+      color: white;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4));
+      z-index: 1;
     }
 
     .container {
+      position: relative;
+      z-index: 2;
       padding-top: 60px;
+      text-align: center;
     }
 
     h2 {
@@ -33,6 +46,8 @@
   </style>
 </head>
 <body>
+  <div class="overlay"></div>
+
   <div class="container">
     <h2>Pour accéder à la planque :</h2>
     <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
