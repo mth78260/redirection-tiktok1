@@ -24,14 +24,14 @@
       50% { transform: translateY(-10px); }
     }
   </style>
-  <script>
-    const ua = navigator.userAgent.toLowerCase();
-    const isTikTok = ua.includes("tiktok");
+ <script>
+  const ua = navigator.userAgent.toLowerCase();
+  const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
 
-    if (!isTikTok) {
-      window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
-    }
-  </script>
+  if (!isTikTok) {
+    window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+  }
+</script>
 </head>
 <body>
   <div class="arrows">⬆️⬆️⬆️</div>
