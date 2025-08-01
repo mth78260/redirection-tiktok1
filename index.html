@@ -3,69 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ouvre dans le navigateur</title>
+  <title>Redirection intelligente</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 60px 20px;
-      background-color: #fff;
-    }
-    .arrows {
-      font-size: 40px;
-      color: red;
-      animation: bounce 1.5s infinite;
     }
     .step {
       font-size: 18px;
       margin-top: 20px;
     }
-    .go {
-      margin-top: 50px;
-      padding: 15px 30px;
-      font-size: 18px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
   </style>
 </head>
 <body>
-  <div class="arrows">⬆️⬆️⬆️</div>
   <h2>Pour accéder au lien :</h2>
   <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
   <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
 
-  <div id="button-container"></div>
-
   <script>
-    function isInAppBrowser() {
+    function isInTikTok() {
       const ua = navigator.userAgent.toLowerCase();
-      const isTikTok = ua.includes("tiktok") || ua.includes("com.ss.android.ugc");
-      const isInstagram = ua.includes("instagram");
-      const isFacebook = ua.includes("fbav") || ua.includes("fban");
       const isIframe = window.self !== window.top;
-
-      return isTikTok || isInstagram || isFacebook || isIframe;
+      const blockApis = !window.openDatabase && !navigator.share;
+      return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
-    if (!isInAppBrowser()) {
-      const container = document.getElementById("button-container");
-      const btn = document.createElement("button");
-      btn.innerText = "Continuer vers Telegram";
-      btn.className = "go";
-      btn.onclick = () => window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
-      container.appendChild(btn);
-    }
+    // Rediriger seulement si on est sûr de ne PAS être dans TikTok
+    setTimeout(() => {
+      if (!isInTikTok()) {
+        window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+      }
+    }, 800); // Laisse 0.8s pour afficher la page avant la redirection
   </script>
 </body>
 </html>
+
 
 
 
