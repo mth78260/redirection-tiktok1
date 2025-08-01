@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirection intelligente</title>
+  <title>Ouvrir dans le navigateur</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 60px 20px;
+      background-color: #fff;
     }
     .step {
       font-size: 18px;
-      margin-top: 20px;
+      margin: 20px 0;
     }
   </style>
 </head>
@@ -29,15 +30,16 @@
       return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
-    // Rediriger seulement si on est sûr de ne PAS être dans TikTok
+    // Redirection après 2.8 secondes si ce n’est PAS TikTok
     setTimeout(() => {
       if (!isInTikTok()) {
         window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
       }
-    }, 800); // Laisse 0.8s pour afficher la page avant la redirection
+    }, 2800);
   </script>
 </body>
 </html>
+
 
 
 
