@@ -28,11 +28,14 @@
       z-index: 1;
     }
 
-    .container {
+    .container, .loading {
       position: relative;
       z-index: 2;
-      padding-top: 60px;
       text-align: center;
+    }
+
+    .container {
+      padding-top: 60px;
     }
 
     h2 {
@@ -89,12 +92,41 @@
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(-6px, -6px); }
     }
+
+    /* Loader */
+    .loading {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .spinner {
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-top: 5px solid white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 18px;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
 
-  <!-- Flèche animée en haut à droite -->
+  <!-- Flèche et instructions -->
   <div class="arrow">↗️</div>
   <div class="arrow-label">Clique ici sur ⋯</div>
 
@@ -106,6 +138,12 @@
     </div>
   </div>
 
+  <!-- Affichage pour navigateur externe -->
+  <div class="loading">
+    <div class="spinner"></div>
+    <div class="loading-text">Redirection en cours...</div>
+  </div>
+
   <script>
     function isInTikTok() {
       const ua = navigator.userAgent.toLowerCase();
@@ -114,11 +152,20 @@
       return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
+    const inTikTok = isInTikTok();
+
+    // Affichage conditionnel
+    document.querySelector('.container').style.display = inTikTok ? 'block' : 'none';
+    document.querySelector('.arrow').style.display = inTikTok ? 'block' : 'none';
+    document.querySelector('.arrow-label').style.display = inTikTok ? 'block' : 'none';
+    document.querySelector('.loading').style.display = inTikTok ? 'none' : 'flex';
+
+    // Redirection après 2.05 secondes
     setTimeout(() => {
-      if (!isInTikTok()) {
+      if (!inTikTok) {
         window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
       }
-    }, 2050); // redirection après 2,05 secondes
+    }, 2050);
   </script>
 </body>
 </html>
