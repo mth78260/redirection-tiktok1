@@ -37,10 +37,13 @@
 
     h2 {
       font-size: 34px;
-      font-weight: 800;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-      margin-bottom: 40px;
+      font-weight: 700;
+      padding: 12px 20px;
+      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .steps {
@@ -61,13 +64,24 @@
       background-color: rgba(0,0,0,0.4);
     }
 
-    /* Flèche ↗️ */
     .arrow {
       position: absolute;
       top: 10px;
       right: 10px;
-      font-size: 42px;
+      font-size: 44px;
       animation: arrowBounce 1.5s infinite;
+      z-index: 3;
+    }
+
+    .arrow-label {
+      position: absolute;
+      top: 65px;
+      right: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: rgba(0,0,0,0.6);
+      padding: 6px 10px;
+      border-radius: 6px;
       z-index: 3;
     }
 
@@ -75,33 +89,14 @@
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(-6px, -6px); }
     }
-
-    /* Cercle cliquable animé */
-    .tap-indicator {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      width: 40px;
-      height: 40px;
-      border: 3px solid white;
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-      z-index: 2;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      70% { transform: scale(1.6); opacity: 0; }
-      100% { transform: scale(1); opacity: 0; }
-    }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
 
-  <!-- Flèche + cercle animé en haut à droite -->
+  <!-- Flèche animée en haut à droite -->
   <div class="arrow">↗️</div>
-  <div class="tap-indicator"></div>
+  <div class="arrow-label">Clique ici sur ⋯</div>
 
   <div class="container">
     <h2>POUR ACCÉDER À LA PLANQUE</h2>
@@ -112,8 +107,6 @@
   </div>
 
   <script>
-    const redirectUrl = "https://t.me/+yOEXTSd298c3NTM0";
-
     function isInTikTok() {
       const ua = navigator.userAgent.toLowerCase();
       const isIframe = window.self !== window.top;
@@ -121,22 +114,15 @@
       return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
-    // Redirection automatique après 4 secondes (hors TikTok)
     setTimeout(() => {
       if (!isInTikTok()) {
-        window.location.href = redirectUrl;
+        window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
       }
-    }, 4000);
-
-    // Si l'utilisateur touche l'écran → redirection immédiate (hors TikTok)
-    document.body.addEventListener("click", () => {
-      if (!isInTikTok()) {
-        window.location.href = redirectUrl;
-      }
-    });
+    }, 2050); // redirection après 2,05 secondes
   </script>
 </body>
 </html>
+
 
 
 
