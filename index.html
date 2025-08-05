@@ -36,9 +36,13 @@
     }
 
     h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 36px;
+      letter-spacing: 1px;
       font-weight: 600;
+      margin-bottom: 40px;
+      background: linear-gradient(to right, #ffffff, #dddddd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .steps {
@@ -53,30 +57,31 @@
       margin: 14px 0;
     }
 
-    /* Flèche animée */
+    /* Flèche droite qui bouge vers le coin en haut à droite */
     .arrow {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 10px;
+      right: 10px;
       font-size: 40px;
-      animation: bounce 1.2s infinite;
+      transform: rotate(45deg);
+      animation: arrowMove 1.2s infinite;
       z-index: 2;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0) rotate(-45deg); }
-      50% { transform: translateY(-10px) rotate(-45deg); }
+    @keyframes arrowMove {
+      0%, 100% { transform: rotate(45deg) translate(0, 0); }
+      50% { transform: rotate(45deg) translate(-5px, -5px); }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
 
-  <!-- Flèche haut droite -->
-  <div class="arrow">⬆️</div>
+  <!-- Flèche animée en haut à droite -->
+  <div class="arrow">➡️</div>
 
   <div class="container">
-    <h2>Pour accéder à la planque :</h2>
+    <h2>POUR ACCÉDER À LA PLANQUE</h2>
     <div class="steps">
       <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
       <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
