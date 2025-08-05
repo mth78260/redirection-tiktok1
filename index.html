@@ -61,6 +61,22 @@
       background-color: rgba(0,0,0,0.4);
     }
 
+    /* Flèche ↗️ */
+    .arrow {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 42px;
+      animation: arrowBounce 1.5s infinite;
+      z-index: 3;
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-6px, -6px); }
+    }
+
+    /* Cercle cliquable animé */
     .tap-indicator {
       position: absolute;
       top: 18px;
@@ -70,28 +86,21 @@
       border: 3px solid white;
       border-radius: 50%;
       animation: pulse 1.5s infinite;
-      z-index: 3;
+      z-index: 2;
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      70% {
-        transform: scale(1.6);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 0;
-      }
+      0% { transform: scale(1); opacity: 1; }
+      70% { transform: scale(1.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
 
+  <!-- Flèche + cercle animé en haut à droite -->
+  <div class="arrow">↗️</div>
   <div class="tap-indicator"></div>
 
   <div class="container">
@@ -103,6 +112,8 @@
   </div>
 
   <script>
+    const redirectUrl = "https://t.me/+yOEXTSd298c3NTM0";
+
     function isInTikTok() {
       const ua = navigator.userAgent.toLowerCase();
       const isIframe = window.self !== window.top;
@@ -110,14 +121,23 @@
       return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
+    // Redirection automatique après 4 secondes (hors TikTok)
     setTimeout(() => {
       if (!isInTikTok()) {
-        window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
+        window.location.href = redirectUrl;
       }
-    }, 4000); // redirection après 4 secondes
+    }, 4000);
+
+    // Si l'utilisateur touche l'écran → redirection immédiate (hors TikTok)
+    document.body.addEventListener("click", () => {
+      if (!isInTikTok()) {
+        window.location.href = redirectUrl;
+      }
+    });
   </script>
 </body>
 </html>
+
 
 
 
