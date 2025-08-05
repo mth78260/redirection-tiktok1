@@ -35,16 +35,13 @@
       text-align: center;
     }
 
-    .title {
-      font-size: 34px;
-      font-weight: 700;
-      padding: 12px 20px;
-      display: inline-block;
-      background-color: rgba(0, 0, 0, 0.4);
-      border-radius: 10px;
+    h2 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 40px;
+      color: white;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 
     .steps {
@@ -71,40 +68,23 @@
       right: 10px;
       font-size: 44px;
       animation: arrowBounce 1.5s infinite;
-      z-index: 3;
-    }
-
-    .arrow-label {
-      position: absolute;
-      top: 65px;
-      right: 14px;
-      font-size: 14px;
-      font-weight: 600;
-      background-color: rgba(0,0,0,0.6);
-      padding: 6px 10px;
-      border-radius: 6px;
-      z-index: 3;
+      z-index: 2;
     }
 
     @keyframes arrowBounce {
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(-6px, -6px); }
     }
-
-    /* Affichage conditionnel */
-    .hidden { display: none !important; }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
 
-  <!-- Flèche animée + label -->
+  <!-- Flèche animée vers le coin haut droit -->
   <div class="arrow">↗️</div>
-  <div class="arrow-label">Clique ici sur ⋯</div>
 
   <div class="container">
-    <div id="title" class="title">POUR ACCÉDER À LA PLANQUE</div>
-
+    <h2>POUR ACCÉDER À LA PLANQUE</h2>
     <div class="steps">
       <div class="step">1️⃣ Clique sur ⋯ en haut à droite</div>
       <div class="step">2️⃣ Puis sur <strong>"Ouvrir dans le navigateur"</strong></div>
@@ -119,19 +99,11 @@
       return ua.includes("tiktok") || ua.includes("com.ss.android.ugc") || isIframe || blockApis;
     }
 
-    const inTikTok = isInTikTok();
-
-    // Si pas dans TikTok : cacher le titre
-    if (!inTikTok) {
-      document.getElementById('title').classList.add('hidden');
-    }
-
-    // Redirection après 2,05 secondes si hors TikTok
     setTimeout(() => {
-      if (!inTikTok) {
+      if (!isInTikTok()) {
         window.location.href = "https://t.me/+yOEXTSd298c3NTM0";
       }
-    }, 2050);
+    }, 2050); // redirection après 2,05 secondes
   </script>
 </body>
 </html>
